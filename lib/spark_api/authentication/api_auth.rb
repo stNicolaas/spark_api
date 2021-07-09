@@ -20,7 +20,7 @@ module SparkApi
         SparkApi.logger.debug { "Authenticating to #{@client.endpoint}" }
         start_time = Time.now
         request_path = "#{SparkApi::Configuration::DEFAULT_SESSION_PATH}?ApiKey=#{@client.api_key}&ApiSig=#{sig}"
-        resp = @client.connection(true).post request_path, ""
+        resp = @client.connection(false).post request_path, ""
         request_time = Time.now - start_time
         SparkApi.logger.info { "[#{(request_time * 1000).to_i}ms] Api: POST #{request_path}" }
         SparkApi.logger.debug { "Authentication Response: #{resp.inspect}" }
